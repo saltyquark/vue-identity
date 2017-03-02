@@ -136,6 +136,7 @@ const identity = {
       self.issuedAt = user.iat
       self.notBefore = user.nbf
       self.attemptRefreshIn(self.expiresIn - 30000)
+      localStorage['vue-identity:refreshToken'] = refreshToken
     }
     self.attemptRefreshIn = (ms) => {
       clearTimeout(self.expiryTimer)
