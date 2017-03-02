@@ -130,13 +130,12 @@ const identity = {
       if (accessToken == undefined) return error('No token received')
       var user = parseToken(accessToken)
       self.accessToken = accessToken
-      self.refreshToken = refreshToken
+      self.refreshToken = localStorage['vue-identity:refreshToken'] = refreshToken
       self.user = user
       self.expires = user.exp
       self.issuedAt = user.iat
       self.notBefore = user.nbf
       self.attemptRefreshIn(self.expiresIn - 30000)
-      localStorage['vue-identity:refreshToken'] = refreshToken
     }
     self.attemptRefreshIn = (ms) => {
       clearTimeout(self.expiryTimer)
